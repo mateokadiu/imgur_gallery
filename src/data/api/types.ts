@@ -3,6 +3,7 @@ export interface GalleryOptions {
   sort: "viral" | "top" | "time" | "rising";
   page?: number;
   window?: "day" | "week" | "month" | "year" | "all";
+  showViral?: boolean;
 }
 
 export interface ImgurImage {

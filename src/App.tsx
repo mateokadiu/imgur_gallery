@@ -1,35 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import logo from "./logo.svg";
 import "./App.scss";
 import { useLazyGetGalleryQuery } from "./data/api/imgur.api";
+import Gallery from "./components/Gallery";
 
 function App() {
   const [getGallery, result] = useLazyGetGalleryQuery();
-  useEffect(() => {
+  const [section, setSection] = useState<"hot" | "top" | "user">("user");
+  const [sort, setSort] = useState<"top" | "viral" | "time" | "rising">("top");
+  const [window, setWindow] = useState<
+    "day" | "week" | "month" | "year" | "all" | undefined
+  >("month");
+  const [page, setPage] = useState<number | undefined>(0);
+  const [showViral, setShowViral] = useState<boolean>(false);
+
+  useMemo(() => {
     getGallery({
-      section: "hot",
-      sort: "top",
-      window: "month",
-      page: 1,
+      section,
+      sort,
+      window,
+      page,
+      showViral,
     });
-  }, []);
-  console.log(result.data);
+  }, [section, sort, window, page, showViral]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {result.isSuccess && result.status === "fulfilled" ? (
+        <Gallery data={result.data} />
+      ) : null}
     </div>
   );
 }
