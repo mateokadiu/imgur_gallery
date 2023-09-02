@@ -5,16 +5,15 @@ import { useLazyGetGalleryQuery } from "./data/api/imgur.api";
 
 function App() {
   const [getGallery, result] = useLazyGetGalleryQuery();
-
   useEffect(() => {
     getGallery({
       section: "hot",
-      sort: "hot",
+      sort: "top",
       window: "month",
       page: 1,
     });
   }, []);
-  console.log(result);
+  console.log(result.data);
   return (
     <div className="App">
       <header className="App-header">
