@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.scss";
+import { useLazyGetGalleryQuery } from "./data/api/imgur.api";
 
 function App() {
+  const [getGallery, result] = useLazyGetGalleryQuery();
+
+  useEffect(() => {
+    getGallery({
+      section: "hot",
+      sort: "hot",
+      window: "month",
+      page: 1,
+    });
+  }, []);
+  console.log(result);
   return (
     <div className="App">
       <header className="App-header">
