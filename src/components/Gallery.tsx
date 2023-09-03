@@ -9,33 +9,35 @@ interface GalleryProps {
 
 const Gallery = ({ data }: GalleryProps) => {
   const memoizedList = useMemo(() => {
-    const galleryData: JSX.Element[] = [];
-
-    data.map((value) =>
-      galleryData.push(
-        <div
-          key={value.id}
-          style={{
-            width: "30%",
-            height: value.cover_height,
-            maxHeight: "400px",
-            minHeight: "300px",
-            padding: "5px",
-          }}
-        >
-          <GalleryElement key={value.id} element={value} />
-        </div>
-      )
-    );
-
-    return galleryData;
+    return data.map((value) => (
+      <div
+        key={value.id}
+        style={{
+          width: "30%",
+          height: value.cover_height,
+          maxHeight: "500px",
+          minHeight: "300px",
+          padding: "10px",
+        }}
+      >
+        <GalleryElement key={value.id} element={value} />
+      </div>
+    ));
   }, [data]);
+
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#2e3035",
+      }}
+    >
       <Masonry
         enterOneAfterAnother={true}
         style={{
-          gap: "10px",
+          width: "80%",
         }}
       >
         {memoizedList}
