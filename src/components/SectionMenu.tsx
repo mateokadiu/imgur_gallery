@@ -1,4 +1,4 @@
-import { Box, Button, Menu, MenuItem } from "@mui/material";
+import { Button, Menu, MenuItem } from "@mui/material";
 import React from "react";
 
 interface SectionMenuProps {
@@ -24,7 +24,7 @@ const SectionMenu = ({ section, setSection }: SectionMenuProps) => {
   };
 
   return (
-    <Box>
+    <>
       <Button
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
@@ -56,7 +56,7 @@ const SectionMenu = ({ section, setSection }: SectionMenuProps) => {
           Hot
         </MenuItem>
       </Menu>
-    </Box>
+    </>
   );
 };
 

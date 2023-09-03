@@ -31,7 +31,6 @@ const Gallery = ({ data }: GalleryProps) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#2e3035",
       }}
     >
       <Masonry

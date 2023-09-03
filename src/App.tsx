@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from "react";
-import logo from "./logo.svg";
 import "./App.scss";
 import { useLazyGetGalleryQuery } from "./data/api/imgur.api";
 import Gallery from "./components/Gallery";
@@ -28,12 +27,28 @@ function App() {
   }, [section, sort, window, page, showViral]);
 
   return (
-    <Box>
+    <Box
+      sx={{
+        backgroundColor: "#2e3035",
+        minHeight: "100vh",
+        height: result.isLoading ? "100vh" : "auto",
+      }}
+    >
       <SectionMenu section={section} setSection={setSection} />
       {result.isSuccess && result.status === "fulfilled" ? (
         <Gallery data={result.data} />
       ) : (
-        <LoadingSpinner />
+        <Box
+          sx={{
+            width: "100%",
+            height: "85%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <LoadingSpinner />
+        </Box>
       )}
     </Box>
   );
