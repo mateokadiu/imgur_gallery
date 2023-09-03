@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { GalleryOptions, ImgurImage } from "./types";
+import { GalleryOptions, ImgurImage } from "../interfaces/imgur.interfaces";
 
 export const imgurApi = createApi({
   reducerPath: "imgurApi",
@@ -24,6 +24,7 @@ export const imgurApi = createApi({
     }),
     getCoverImage: builder.query<any, string>({
       query: (id) => `/image/${id}`,
+      transformResponse: (res: any) => res.data,
     }),
   }),
 });
