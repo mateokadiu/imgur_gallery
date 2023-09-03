@@ -11,9 +11,10 @@ const Gallery = ({ data }: GalleryProps) => {
   const memoizedList = useMemo(() => {
     const galleryData: JSX.Element[] = [];
 
-    data.map((value, index) =>
+    data.map((value) =>
       galleryData.push(
         <div
+          key={value.id}
           style={{
             width: "30%",
             height: value.cover_height,

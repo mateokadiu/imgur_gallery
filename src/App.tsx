@@ -3,6 +3,9 @@ import logo from "./logo.svg";
 import "./App.scss";
 import { useLazyGetGalleryQuery } from "./data/api/imgur.api";
 import Gallery from "./components/Gallery";
+import SectionMenu from "./components/SectionMenu";
+import { CircularProgress, Box } from "@mui/material";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
   const [getGallery, result] = useLazyGetGalleryQuery();
@@ -25,11 +28,14 @@ function App() {
   }, [section, sort, window, page, showViral]);
 
   return (
-    <div>
+    <Box>
+      <SectionMenu section={section} setSection={setSection} />
       {result.isSuccess && result.status === "fulfilled" ? (
         <Gallery data={result.data} />
-      ) : null}
-    </div>
+      ) : (
+        <LoadingSpinner />
+      )}
+    </Box>
   );
 }
 
