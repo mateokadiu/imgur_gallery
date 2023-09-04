@@ -5,6 +5,7 @@ div.description {
     justify-content: center;
     font-size: 0.85rem;
     color: #b4b9c2;
+    cursor: pointer;
   
     svg {
       & path {
@@ -12,32 +13,36 @@ div.description {
       }
     }
   
-    &.upvote:hover {
-        color: greenyellow;
-        & svg path {
-            fill: greenyellow;
-        }
+    &.upvote:hover,
+    &.upvote:active {
+      color: greenyellow;
+      & svg path {
+        fill: greenyellow;
+      }
     }
   
-    &.downvote:hover {
-        color: red;
-        & svg path {
-            fill: red; 
-        }
+    &.downvote:hover,
+    &.downvote:active {
+      color: red;
+      & svg path {
+        fill: red;
+      }
     }
   
-    &.comment:hover{
-        color: blue;
-        & svg path {
-            fill: blue; 
-        }
+    &.comment:hover,
+    &.comment:active {
+      color: blue;
+      & svg path {
+        fill: blue;
+      }
     }
   
-    &.views:hover {
-        color: orange;
-        svg path {
-            fill: orange;
-        }
+    &.views:hover,
+    &.views:active {
+      color: orange;
+      svg path {
+        fill: orange;
+      }
     }
   }
   
