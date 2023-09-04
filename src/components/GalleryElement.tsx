@@ -43,4 +43,6 @@ const GalleryElement = ({ element }: GalleryElementProps) => {
   return content;
 };
 
-export default React.memo(GalleryElement);
+export default React.memo(GalleryElement, (prev, next) => {
+  return prev.element.id === next.element.id;
+});

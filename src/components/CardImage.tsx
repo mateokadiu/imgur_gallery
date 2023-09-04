@@ -11,7 +11,7 @@ const CardImage = ({ source, title }: CardImageProps) => {
       style={{
         objectFit: "cover",
         width: "100%",
-        height: "85%",
+        height: "100%",
       }}
       src={source}
       alt={title} // Provide alt text for accessibility.

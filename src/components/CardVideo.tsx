@@ -11,8 +11,10 @@ const CardVideo = ({ source }: CardVideoProps) => {
       style={{
         objectFit: "cover",
       }}
-      height="85%"
+      height="100%"
       controls
+      autoPlay={true}
+      muted
     >
       <source src={source} />
     </video>
