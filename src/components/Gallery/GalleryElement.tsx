@@ -1,12 +1,11 @@
 import React from "react";
-import { ImgurImage } from "../data/interfaces/imgur.interfaces";
-import { useGetCoverImageQuery } from "../data/api/imgur.api";
+import { ImgurImage } from "../../data/interfaces/imgur.interfaces";
+import { useGetCoverImageQuery } from "../../data/api/imgur.api";
 import { QueryStatus } from "@reduxjs/toolkit/dist/query/react";
-import LoadingSpinner from "./LoadingSpinner";
-import { Box, Typography } from "@mui/material";
-import CardVideo from "./CardVideo";
-import CardImage from "./CardImage";
-import CardContainer from "./CardContainer";
+import CardVideo from "../Card/CardVideo";
+import CardImage from "../Card/CardImage";
+import CardContainer from "../Card/CardContainer";
+import LoadingSpinner from "../LoadingSpinner";
 // Define a constant for the background color.
 
 interface GalleryElementProps {
@@ -15,14 +14,23 @@ interface GalleryElementProps {
 
 const GalleryElement = ({ element }: GalleryElementProps) => {
   const result = useGetCoverImageQuery(element?.cover);
-  console.log(element.title, element.id);
+
   let content;
 
   if (result.isSuccess && result.status === QueryStatus.fulfilled) {
     const source = `http://${result.data.link.split("//")[1]}`;
 
     content = (
-      <CardContainer title={element.title}>
+      <CardContainer
+        title={element.title}
+        description={{
+          upvotes: element.ups,
+          downvotes: element.downs,
+          views: element.views,
+          score: element.score,
+          commentCount: element.comment_count,
+        }}
+      >
         {result?.data?.link?.includes("mp4") ? (
           <CardVideo source={source} />
         ) : (

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import { ImgurImage } from "../data/interfaces/imgur.interfaces";
 import GalleryElement from "./GalleryElement";
 import { Masonry } from "react-masonry/dist";
+import { ImgurImage } from "../../data/interfaces/imgur.interfaces";
 
 interface GalleryProps {
   data: ImgurImage[];

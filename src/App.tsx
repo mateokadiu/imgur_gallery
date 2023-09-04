@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./App.scss";
 import { useLazyGetGalleryQuery } from "./data/api/imgur.api";
-import Gallery from "./components/Gallery";
+import Gallery from "./components/Gallery/Gallery";
 import SectionMenu from "./components/SectionMenu";
-import { CircularProgress, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {

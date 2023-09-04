@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
 import React from "react";
+import { Box } from "@mui/material";
 import LinesEllipsis from "react-lines-ellipsis";
 
 interface CardTitleProps {
@@ -18,6 +18,8 @@ const CardTitle = ({ title }: CardTitleProps) => {
         width: "100%",
         minHeight: "3.5rem",
         boxShadow: 15,
+        borderTopLeftRadius: "5px",
+        borderTopRightRadius: "5px",
       }}
     >
       <Box sx={{ padding: "0.5rem" }}>

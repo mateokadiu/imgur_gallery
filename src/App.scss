@@ -1,0 +1,43 @@
+div.description {
+    display: flex;
+    gap: 5%;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: #b4b9c2;
+  
+    svg {
+      & path {
+        fill: #b4b9c2;
+      }
+    }
+  
+    &.upvote:hover {
+        color: greenyellow;
+        & svg path {
+            fill: greenyellow;
+        }
+    }
+  
+    &.downvote:hover {
+        color: red;
+        & svg path {
+            fill: red; 
+        }
+    }
+  
+    &.comment:hover{
+        color: blue;
+        & svg path {
+            fill: blue; 
+        }
+    }
+  
+    &.views:hover {
+        color: orange;
+        svg path {
+            fill: orange;
+        }
+    }
+  }
+  
