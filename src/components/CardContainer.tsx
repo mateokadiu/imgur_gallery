@@ -30,12 +30,7 @@ const CardContainer = ({
           width="100%"
           height="300px"
           color="white"
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
+          sx={{}}
         >
           Error loading image or video
         </Typography>
