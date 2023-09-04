@@ -35,6 +35,7 @@ const CardContainer = ({
           opacity: 0.7,
         },
         borderRadius: "5px",
+        overflow: "hidden",
       }}
     >
       {isError ? (

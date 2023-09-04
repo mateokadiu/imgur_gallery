@@ -26,7 +26,7 @@ const CardTitle = ({ title }: CardTitleProps) => {
         <LinesEllipsis
           text={title}
           maxLine="2"
-          style={{ color: "white" }}
+          style={{ color: "white", fontSize: "0.9rem" }}
           ellipsis="..."
           trimRight
           basedOn="letters"
