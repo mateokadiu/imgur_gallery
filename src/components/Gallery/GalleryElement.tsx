@@ -22,6 +22,7 @@ const GalleryElement = ({ element }: GalleryElementProps) => {
 
     content = (
       <CardContainer
+        id={element.id}
         title={element.title}
         description={{
           upvotes: element.ups,

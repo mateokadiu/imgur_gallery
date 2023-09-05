@@ -3,6 +3,7 @@ import React from "react";
 import CardError from "./CardError";
 import CardTitle from "./CardTitle";
 import CardDetails from "./CardDetails/CardDetails";
+import { useNavigate } from "react-router-dom";
 
 interface CardContainerProps {
   title?: string;
@@ -15,14 +16,18 @@ interface CardContainerProps {
     downvotes: number;
     commentCount: number | null;
   };
+  id?: string;
 }
 
 const CardContainer = ({
+  id = "",
   title = "",
   children,
   isError = false,
   description,
 }: CardContainerProps) => {
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -36,6 +41,9 @@ const CardContainer = ({
         },
         borderRadius: "5px",
         overflow: "hidden",
+      }}
+      onClick={() => {
+        navigate(`/image/${id}`);
       }}
     >
       {isError ? (
