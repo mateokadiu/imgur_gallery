@@ -2,28 +2,32 @@ import React, { useMemo } from "react";
 import GalleryElement from "./GalleryElement";
 import { Masonry } from "react-masonry/dist";
 import { ImgurImage } from "../../data/interfaces/imgur.interfaces";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 interface GalleryProps {
   data: ImgurImage[];
 }
 
 const Gallery = ({ data }: GalleryProps) => {
+  const { width, height } = useWindowDimensions();
+
   const memoizedList = useMemo(() => {
     return data.map((value) => (
       <div
         key={value.id}
         style={{
-          width: "30%",
+          width: width > 1000 ? "30%" : width > 700 ? "45%" : "90%",
           height: value.cover_height,
           maxHeight: "500px",
           minHeight: "300px",
           padding: "10px",
+          marginLeft: width > 1000 ? "1%" : "2.5%",
         }}
       >
         <GalleryElement key={value.id} element={value} />
       </div>
     ));
-  }, [data]);
+  }, [data, width]);
 
   return (
     <div
@@ -36,8 +40,9 @@ const Gallery = ({ data }: GalleryProps) => {
       <Masonry
         enterOneAfterAnother={true}
         style={{
-          width: "80%",
+          width: width > 1000 ? "80%" : width > 700 ? "85%" : "90%",
         }}
+        updateOnWindowResize={true}
       >
         {memoizedList}
       </Masonry>
