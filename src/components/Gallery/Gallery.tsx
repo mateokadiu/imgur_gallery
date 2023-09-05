@@ -70,7 +70,13 @@ const Gallery = () => {
         <GalleryElement key={value.id} element={value} />
       </div>
     ));
-  }, [galleryUserSectionData, section, width]);
+  }, [
+    galleryUserSectionData,
+    galleryHotSectionData,
+    galleryTopSectionData,
+    section,
+    width,
+  ]);
 
   return (
     <div
