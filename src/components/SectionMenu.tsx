@@ -1,12 +1,13 @@
 import { Button, Menu, MenuItem } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { RootContext } from "../contexts/RootContext";
 
-interface SectionMenuProps {
-  section: "hot" | "top" | "user";
-  setSection: React.Dispatch<React.SetStateAction<"hot" | "top" | "user">>;
-}
+const SectionMenu = () => {
+  const {
+    state: { section },
+    action: { setSection },
+  } = useContext(RootContext);
 
-const SectionMenu = ({ section, setSection }: SectionMenuProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 

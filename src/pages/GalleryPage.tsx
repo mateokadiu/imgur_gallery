@@ -1,19 +1,16 @@
 import { Box } from "@mui/material";
-import React, { useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import SectionMenu from "../components/SectionMenu";
 import Gallery from "../components/Gallery/Gallery";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useLazyGetGalleryQuery } from "../data/api/imgur.api";
+import { RootContext } from "../contexts/RootContext";
 
 const GalleryPage = () => {
   const [getGallery, result] = useLazyGetGalleryQuery();
-  const [section, setSection] = useState<"hot" | "top" | "user">("user");
-  const [sort, setSort] = useState<"top" | "viral" | "time" | "rising">("top");
-  const [window, setWindow] = useState<
-    "day" | "week" | "month" | "year" | "all" | undefined
-  >("month");
-  const [page, setPage] = useState<number | undefined>(0);
-  const [showViral, setShowViral] = useState<boolean>(false);
+  const {
+    state: { section, sort, window, showViral, page },
+  } = useContext(RootContext);
 
   useMemo(() => {
     getGallery({
@@ -33,7 +30,7 @@ const GalleryPage = () => {
         height: result.isLoading ? "100vh" : "auto",
       }}
     >
-      <SectionMenu section={section} setSection={setSection} />
+      <SectionMenu />
       {result.isSuccess && result.status === "fulfilled" ? (
         <Gallery data={result.data} />
       ) : (

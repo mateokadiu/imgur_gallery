@@ -43,7 +43,7 @@ const CardContainer = ({
         overflow: "hidden",
       }}
       onClick={() => {
-        navigate(`/image/${id}`);
+        navigate(`/gallery/${id}`);
       }}
     >
       {isError ? (

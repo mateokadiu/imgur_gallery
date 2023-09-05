@@ -9,7 +9,7 @@ interface GalleryProps {
 }
 
 const Gallery = ({ data }: GalleryProps) => {
-  const { width, height } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   const memoizedList = useMemo(() => {
     return data.map((value) => (
