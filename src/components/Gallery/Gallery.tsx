@@ -1,18 +1,61 @@
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import GalleryElement from "./GalleryElement";
 import { Masonry } from "react-masonry/dist";
-import { ImgurImage } from "../../data/interfaces/imgur.interfaces";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import { useSelector } from "react-redux";
+import {
+  selectAllImagesHot,
+  selectAllImagesTop,
+  selectAllImagesUser,
+} from "../../data/store/gallerySlice";
+import { RootContext } from "../../contexts/RootContext";
 
-interface GalleryProps {
-  data: ImgurImage[];
-}
-
-const Gallery = ({ data }: GalleryProps) => {
+const Gallery = () => {
   const { width } = useWindowDimensions();
 
+  const galleryUserSectionData = useSelector(selectAllImagesUser);
+  const galleryHotSectionData = useSelector(selectAllImagesHot);
+  const galleryTopSectionData = useSelector(selectAllImagesTop);
+
+  const {
+    state: { section },
+  } = useContext(RootContext);
+
   const memoizedList = useMemo(() => {
-    return data.map((value) => (
+    if (section === "hot") {
+      return galleryHotSectionData.map((value) => (
+        <div
+          key={value.id}
+          style={{
+            width: width > 1000 ? "30%" : width > 700 ? "45%" : "90%",
+            height: value.cover_height,
+            maxHeight: "500px",
+            minHeight: "300px",
+            padding: "10px",
+            marginLeft: width > 1000 ? "1%" : "2.5%",
+          }}
+        >
+          <GalleryElement key={value.id} element={value} />
+        </div>
+      ));
+    } else if (section === "top") {
+      return galleryTopSectionData.map((value) => (
+        <div
+          key={value.id}
+          style={{
+            width: width > 1000 ? "30%" : width > 700 ? "45%" : "90%",
+            height: value.cover_height,
+            maxHeight: "500px",
+            minHeight: "300px",
+            padding: "10px",
+            marginLeft: width > 1000 ? "1%" : "2.5%",
+          }}
+        >
+          <GalleryElement key={value.id} element={value} />
+        </div>
+      ));
+    }
+    return galleryUserSectionData.map((value) => (
       <div
         key={value.id}
         style={{
@@ -27,7 +70,7 @@ const Gallery = ({ data }: GalleryProps) => {
         <GalleryElement key={value.id} element={value} />
       </div>
     ));
-  }, [data, width]);
+  }, [galleryUserSectionData, section, width]);
 
   return (
     <div
@@ -38,11 +81,9 @@ const Gallery = ({ data }: GalleryProps) => {
       }}
     >
       <Masonry
-        enterOneAfterAnother={true}
         style={{
           width: width > 1000 ? "80%" : width > 700 ? "85%" : "90%",
         }}
-        updateOnWindowResize={true}
       >
         {memoizedList}
       </Masonry>

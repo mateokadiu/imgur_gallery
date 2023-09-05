@@ -32,7 +32,7 @@ const GalleryPage = () => {
     >
       <SectionMenu />
       {result.isSuccess && result.status === "fulfilled" ? (
-        <Gallery data={result.data} />
+        <Gallery />
       ) : (
         <Box
           sx={{
