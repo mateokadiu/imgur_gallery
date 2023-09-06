@@ -12,9 +12,8 @@ import { RootContext } from "../contexts/RootContext";
 import useReachedBottom from "../hooks/useReachedBottom";
 import {
   resetSection,
-  selectAllImagesHot,
-  selectAllImagesTop,
-  selectAllImagesUser,
+  selectGalleryState,
+  selectPageBySection,
 } from "../data/store/gallerySlice";
 
 const PinkSwitch = styled(Switch)(({ theme }) => ({
@@ -34,16 +33,14 @@ const label = { inputProps: { "aria-label": "Show Viral" } };
 const GalleryPage = () => {
   const [getGallery, result] = useLazyGetGalleryQuery();
   const {
-    state: { section, sort, window, showViral, page },
-    action: { setPage, setShowViral },
+    state: { section, sort, window, showViral },
+    action: { setShowViral },
   } = useContext(RootContext);
+
+  const page = useSelector(selectPageBySection(section));
 
   const atEndOfPage = useReachedBottom();
   const dispatch = useDispatch();
-
-  const selectAllImagesHotData = useSelector(selectAllImagesHot);
-  const selectAllImagesTopData = useSelector(selectAllImagesTop);
-  const selectAllImagesUserData = useSelector(selectAllImagesUser);
 
   useEffect(() => {
     getGallery({
@@ -53,7 +50,7 @@ const GalleryPage = () => {
       page,
       showViral,
     });
-  }, [showViral]);
+  }, [showViral, section]);
 
   useEffect(() => {
     if (atEndOfPage) {
@@ -61,17 +58,13 @@ const GalleryPage = () => {
         section,
         sort,
         window,
-        page: page + 1,
+        page,
         showViral,
       });
-      setPage(page + 1);
     }
   }, [atEndOfPage]);
 
-  const isLoading =
-    selectAllImagesHotData.length === 0 &&
-    selectAllImagesTopData.length === 0 &&
-    selectAllImagesUserData.length === 0;
+  const isLoading = page < 1;
 
   return (
     <Box
@@ -88,7 +81,6 @@ const GalleryPage = () => {
             {...label}
             checked={showViral}
             onClick={() => {
-              setPage(0);
               setShowViral(!showViral);
               dispatch(resetSection(section));
             }}

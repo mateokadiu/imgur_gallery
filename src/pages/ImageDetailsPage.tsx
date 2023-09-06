@@ -4,8 +4,8 @@ import { useGetCoverImageQuery } from "../data/api/imgur.api";
 
 const ImageDetailsPage = () => {
   const { id } = useParams();
-  const result = useGetCoverImageQuery(id as any);
-  console.log(result);
+  // const result = useGetCoverImageQuery(id as any);
+
   console.log(id);
   return <div>ImageDetailsPage</div>;
 };
