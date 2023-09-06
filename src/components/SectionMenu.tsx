@@ -7,6 +7,8 @@ import {
 } from "@mui/material";
 import React, { useCallback, useContext } from "react";
 import { RootContext } from "../contexts/RootContext";
+import TagFacesOutlinedIcon from "@mui/icons-material/TagFacesOutlined";
+import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 import WhatshotOutlinedIcon from "@mui/icons-material/WhatshotOutlined";
 
 const SectionMenu = () => {
@@ -31,13 +33,13 @@ const SectionMenu = () => {
       sx={{ "& .MuiButton-label": { color: "#fff" } }}
     >
       <ToggleButton color="primary" value="user">
-        <WhatshotOutlinedIcon />
+        <TagFacesOutlinedIcon />
       </ToggleButton>
       <ToggleButton color="error" value="hot">
         <WhatshotOutlinedIcon />
       </ToggleButton>
       <ToggleButton color="success" value="top">
-        <WhatshotOutlinedIcon />
+        <ArrowUpwardOutlinedIcon />
       </ToggleButton>
     </ToggleButtonGroup>
   );
