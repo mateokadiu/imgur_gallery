@@ -37,14 +37,16 @@ export const gallerySlice = createSlice({
   initialState,
   reducers: {
     resetAppState: () => initialState,
-    resetUserSection: (state) => {
-      state.user = initialStateUserSection;
-    },
-    resetHotSection: (state) => {
-      state.hot = initialStateHotSection;
-    },
-    resetTopSection: (state) => {
-      state.top = initialStateTopSection;
+    resetSection: (state, action) => {
+      if (action.payload === "user") {
+        state.user = initialStateUserSection;
+      }
+      if (action.payload === "hot") {
+        state.hot = initialStateHotSection;
+      }
+      if (action.payload === "top") {
+        state.top = initialStateTopSection;
+      }
     },
   },
   extraReducers: (builder) =>
@@ -81,9 +83,4 @@ export const { selectAll: selectAllImagesTop } =
       state.gallery.top
   );
 
-export const {
-  resetAppState,
-  resetHotSection,
-  resetTopSection,
-  resetUserSection,
-} = gallerySlice.actions;
+export const { resetAppState, resetSection } = gallerySlice.actions;
