@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, styled } from "@mui/material";
+import { Box, FormControlLabel, styled } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import { pink } from "@mui/material/colors";
 import Switch from "@mui/material/Switch";
@@ -82,15 +82,24 @@ const GalleryPage = () => {
       }}
     >
       <SectionMenu />
-      <PinkSwitch
-        {...label}
-        checked={showViral}
-        onClick={() => {
-          setPage(0);
-          setShowViral(!showViral);
-          dispatch(resetSection(section));
+      <FormControlLabel
+        control={
+          <PinkSwitch
+            {...label}
+            checked={showViral}
+            onClick={() => {
+              setPage(0);
+              setShowViral(!showViral);
+              dispatch(resetSection(section));
+            }}
+          />
+        }
+        sx={{
+          color: "#fff",
         }}
+        label="Show Viral"
       />
+
       {isLoading ? (
         <Box
           sx={{
