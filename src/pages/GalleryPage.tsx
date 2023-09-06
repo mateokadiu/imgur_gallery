@@ -5,12 +5,17 @@ import Gallery from "../components/Gallery/Gallery";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useLazyGetGalleryQuery } from "../data/api/imgur.api";
 import { RootContext } from "../contexts/RootContext";
+import useReachedBottom from "../hooks/useReachedBottom";
 
 const GalleryPage = () => {
   const [getGallery, result] = useLazyGetGalleryQuery();
   const {
     state: { section, sort, window, showViral, page },
   } = useContext(RootContext);
+
+  const atEndOfPage = useReachedBottom();
+
+  console.log("atEndOfPage", atEndOfPage);
 
   useMemo(() => {
     getGallery({
