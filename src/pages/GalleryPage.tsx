@@ -1,6 +1,7 @@
-import { Box } from "@mui/material";
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import { alpha, styled } from "@mui/material/styles";
+import React, { useContext, useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Box, styled } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 import { pink } from "@mui/material/colors";
 import Switch from "@mui/material/Switch";
 import SectionMenu from "../components/SectionMenu";
@@ -9,7 +10,6 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { useLazyGetGalleryQuery } from "../data/api/imgur.api";
 import { RootContext } from "../contexts/RootContext";
 import useReachedBottom from "../hooks/useReachedBottom";
-import { useDispatch, useSelector } from "react-redux";
 import {
   resetSection,
   selectAllImagesHot,
@@ -39,17 +39,13 @@ const GalleryPage = () => {
   } = useContext(RootContext);
 
   const atEndOfPage = useReachedBottom();
-
   const dispatch = useDispatch();
 
   const selectAllImagesHotData = useSelector(selectAllImagesHot);
   const selectAllImagesTopData = useSelector(selectAllImagesTop);
   const selectAllImagesUserData = useSelector(selectAllImagesUser);
 
-  console.log("atEndOfPage", atEndOfPage);
-
   useEffect(() => {
-    console.log(showViral);
     getGallery({
       section,
       sort,
@@ -59,9 +55,8 @@ const GalleryPage = () => {
     });
   }, [showViral]);
 
-  useMemo(() => {
+  useEffect(() => {
     if (atEndOfPage) {
-      console.log("api call", page);
       getGallery({
         section,
         sort,
@@ -72,6 +67,11 @@ const GalleryPage = () => {
       setPage(page + 1);
     }
   }, [atEndOfPage]);
+
+  const isLoading =
+    selectAllImagesHotData.length === 0 &&
+    selectAllImagesTopData.length === 0 &&
+    selectAllImagesUserData.length === 0;
 
   return (
     <Box
@@ -91,11 +91,7 @@ const GalleryPage = () => {
           dispatch(resetSection(section));
         }}
       />
-      {selectAllImagesHotData.length > 0 ||
-      selectAllImagesTopData.length > 0 ||
-      selectAllImagesUserData.length > 0 ? (
-        <Gallery />
-      ) : (
+      {isLoading ? (
         <Box
           sx={{
             width: "100%",
@@ -107,6 +103,8 @@ const GalleryPage = () => {
         >
           <LoadingSpinner />
         </Box>
+      ) : (
+        <Gallery />
       )}
     </Box>
   );
