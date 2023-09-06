@@ -27,7 +27,7 @@ const Gallery = () => {
         <div
           key={value.id}
           style={{
-            width: width > 1000 ? "30%" : width > 700 ? "45%" : "90%",
+            width: width > 1000 ? "30%" : width > 700 ? "45%" : "80%",
             height: value.cover_height || 500,
             maxHeight: "500px",
             minHeight: "300px",
@@ -44,7 +44,7 @@ const Gallery = () => {
           <div
             key={value.id}
             style={{
-              width: width > 1000 ? "30%" : width > 700 ? "45%" : "90%",
+              width: width > 1000 ? "30%" : width > 700 ? "45%" : "80%",
               height: value.cover_height || 500,
               maxHeight: "500px",
               minHeight: "300px",
