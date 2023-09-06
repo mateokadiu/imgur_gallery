@@ -41,6 +41,7 @@ export interface ImgurImage {
   ad_url: string;
   include_album_ads: boolean;
   images: ImgurImageInfo[];
+  in_most_viral: boolean;
   ad_config: {
     safeFlags: string[];
     highRiskFlags: string[];
