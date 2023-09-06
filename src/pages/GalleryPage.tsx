@@ -9,8 +9,9 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { useLazyGetGalleryQuery } from "../data/api/imgur.api";
 import { RootContext } from "../contexts/RootContext";
 import useReachedBottom from "../hooks/useReachedBottom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  resetSection,
   selectAllImagesHot,
   selectAllImagesTop,
   selectAllImagesUser,
@@ -38,6 +39,8 @@ const GalleryPage = () => {
   } = useContext(RootContext);
 
   const atEndOfPage = useReachedBottom();
+
+  const dispatch = useDispatch();
 
   const selectAllImagesHotData = useSelector(selectAllImagesHot);
   const selectAllImagesTopData = useSelector(selectAllImagesTop);
@@ -85,6 +88,7 @@ const GalleryPage = () => {
         onClick={() => {
           setPage(0);
           setShowViral(!showViral);
+          dispatch(resetSection(section));
         }}
       />
       {selectAllImagesHotData.length > 0 ||
