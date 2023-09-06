@@ -1,23 +1,34 @@
 import { Box } from "@mui/material";
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import SectionMenu from "../components/SectionMenu";
 import Gallery from "../components/Gallery/Gallery";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useLazyGetGalleryQuery } from "../data/api/imgur.api";
 import { RootContext } from "../contexts/RootContext";
 import useReachedBottom from "../hooks/useReachedBottom";
+import { useSelector } from "react-redux";
+import {
+  selectAllImagesHot,
+  selectAllImagesTop,
+  selectAllImagesUser,
+} from "../data/store/gallerySlice";
 
 const GalleryPage = () => {
   const [getGallery, result] = useLazyGetGalleryQuery();
   const {
     state: { section, sort, window, showViral, page },
+    action: { setPage },
   } = useContext(RootContext);
 
   const atEndOfPage = useReachedBottom();
 
+  const selectAllImagesHotData = useSelector(selectAllImagesHot);
+  const selectAllImagesTopData = useSelector(selectAllImagesTop);
+  const selectAllImagesUserData = useSelector(selectAllImagesUser);
+
   console.log("atEndOfPage", atEndOfPage);
 
-  useMemo(() => {
+  useEffect(() => {
     getGallery({
       section,
       sort,
@@ -25,7 +36,21 @@ const GalleryPage = () => {
       page,
       showViral,
     });
-  }, [section, sort, window, page, showViral]);
+  }, []);
+
+  useMemo(() => {
+    if (atEndOfPage) {
+      console.log("api call", page);
+      getGallery({
+        section,
+        sort,
+        window,
+        page: page + 1,
+        showViral,
+      });
+      setPage(page + 1);
+    }
+  }, [atEndOfPage]);
 
   return (
     <Box
@@ -36,7 +61,9 @@ const GalleryPage = () => {
       }}
     >
       <SectionMenu />
-      {result.isSuccess && result.status === "fulfilled" ? (
+      {selectAllImagesHotData.length > 0 ||
+      selectAllImagesTopData.length > 0 ||
+      selectAllImagesUserData.length > 0 ? (
         <Gallery />
       ) : (
         <Box

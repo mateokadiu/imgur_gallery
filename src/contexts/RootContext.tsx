@@ -5,7 +5,7 @@ interface RootContextState {
     section: "hot" | "top" | "user";
     sort: "top" | "viral" | "time" | "rising";
     window: "day" | "week" | "month" | "year" | "all" | undefined;
-    page: number | undefined;
+    page: number;
     showViral: boolean;
   };
   action: {
@@ -18,7 +18,7 @@ interface RootContextState {
         "day" | "week" | "month" | "year" | "all" | undefined
       >
     >;
-    setPage: React.Dispatch<React.SetStateAction<number | undefined>>;
+    setPage: React.Dispatch<React.SetStateAction<number>>;
     setShowViral: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }
@@ -37,7 +37,7 @@ const RootProvider = ({ children }: RootProviderProps) => {
   const [window, setWindow] = useState<
     "day" | "week" | "month" | "year" | "all" | undefined
   >("month");
-  const [page, setPage] = useState<number | undefined>(0);
+  const [page, setPage] = useState<number>(0);
   const [showViral, setShowViral] = useState<boolean>(false);
 
   const value = {
