@@ -15,6 +15,8 @@ import {
   selectGalleryState,
   selectPageBySection,
 } from "../data/store/gallerySlice";
+import WindowSelector from "../components/WindowSelector";
+import SortSelector from "../components/SortSelector";
 
 const PinkSwitch = styled(Switch)(({ theme }) => ({
   "& .MuiSwitch-switchBase.Mui-checked": {
@@ -54,7 +56,7 @@ const GalleryPage = () => {
         showViral,
       });
     }
-  }, [showViral, section]);
+  }, [showViral, section, sort, window]);
 
   useEffect(() => {
     if (atEndOfPage) {
@@ -81,6 +83,7 @@ const GalleryPage = () => {
       }}
     >
       <SectionMenu />
+
       <FormControlLabel
         control={
           <PinkSwitch
@@ -97,6 +100,9 @@ const GalleryPage = () => {
         }}
         label="Show Viral"
       />
+
+      {section === "top" && <WindowSelector />}
+      {section === "user" && <SortSelector />}
 
       {isLoading ? (
         <Box

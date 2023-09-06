@@ -33,10 +33,10 @@ interface RootProviderProps {
 
 const RootProvider = ({ children }: RootProviderProps) => {
   const [section, setSection] = useState<"hot" | "top" | "user">("user");
-  const [sort, setSort] = useState<"top" | "viral" | "time" | "rising">("time");
+  const [sort, setSort] = useState<"top" | "viral" | "time" | "rising">("time"); // only for user section
   const [window, setWindow] = useState<
     "day" | "week" | "month" | "year" | "all" | undefined
-  >("week");
+  >("week"); // only for top section
   const [page, setPage] = useState<number>(0);
   const [showViral, setShowViral] = useState<boolean>(false);
 
