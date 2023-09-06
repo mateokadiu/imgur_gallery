@@ -39,17 +39,21 @@ const GalleryPage = () => {
 
   const page = useSelector(selectPageBySection(section));
 
+  console.log(page);
+
   const atEndOfPage = useReachedBottom();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getGallery({
-      section,
-      sort,
-      window,
-      page,
-      showViral,
-    });
+    if (page === 0) {
+      getGallery({
+        section,
+        sort,
+        window,
+        page,
+        showViral,
+      });
+    }
   }, [showViral, section]);
 
   useEffect(() => {
@@ -65,6 +69,8 @@ const GalleryPage = () => {
   }, [atEndOfPage]);
 
   const isLoading = page < 1;
+
+  console.log(isLoading);
 
   return (
     <Box

@@ -37,6 +37,7 @@ export interface ImgurImage {
   in_gallery: boolean;
   is_ad: boolean;
   tags: ImgurTag[];
+  type: string;
   ad_type: number;
   ad_url: string;
   include_album_ads: boolean;
@@ -72,12 +73,11 @@ interface ImgurTag {
   description_annotations: Record<string, any>;
 }
 
-interface ImgurImageInfo {
+export interface ImgurImageInfo {
   id: string;
-  title: string | null;
+  title: string;
   description: string | null;
   datetime: number;
-  type: string;
   animated: boolean;
   width: number;
   height: number;
@@ -101,6 +101,7 @@ interface ImgurImageInfo {
   link: string;
   mp4_size: number;
   mp4: string;
+  type: string;
   gifv: string;
   hls: string;
   processing: {
@@ -108,8 +109,8 @@ interface ImgurImageInfo {
   };
   comment_count: number | null;
   favorite_count: number | null;
-  ups: number | null;
-  downs: number | null;
+  ups: number;
+  downs: number;
   points: number | null;
-  score: number | null;
+  score: number;
 }

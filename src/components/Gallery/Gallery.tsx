@@ -28,7 +28,7 @@ const Gallery = () => {
           key={value.id}
           style={{
             width: width > 1000 ? "30%" : width > 700 ? "45%" : "90%",
-            height: value.cover_height,
+            height: value.cover_height || 500,
             maxHeight: "500px",
             minHeight: "300px",
             padding: "10px",
@@ -39,28 +39,31 @@ const Gallery = () => {
         </div>
       ));
     } else if (section === "top") {
-      return galleryTopSectionData.map((value) => (
-        <div
-          key={value.id}
-          style={{
-            width: width > 1000 ? "30%" : width > 700 ? "45%" : "90%",
-            height: value.cover_height,
-            maxHeight: "500px",
-            minHeight: "300px",
-            padding: "10px",
-            marginLeft: width > 1000 ? "1%" : "2.5%",
-          }}
-        >
-          <GalleryElement key={value.id} element={value} />
-        </div>
-      ));
+      return galleryTopSectionData.map((value) => {
+        return (
+          <div
+            key={value.id}
+            style={{
+              width: width > 1000 ? "30%" : width > 700 ? "45%" : "90%",
+              height: value.cover_height || 500,
+              maxHeight: "500px",
+              minHeight: "300px",
+              padding: "10px",
+              marginLeft: width > 1000 ? "1%" : "2.5%",
+            }}
+          >
+            <GalleryElement key={value.id} element={value} />
+          </div>
+        );
+      });
     }
+
     return galleryUserSectionData.map((value) => (
       <div
         key={value.id}
         style={{
           width: width > 1000 ? "30%" : width > 700 ? "45%" : "90%",
-          height: value.cover_height,
+          height: value.cover_height || 500,
           maxHeight: "500px",
           minHeight: "300px",
           padding: "10px",

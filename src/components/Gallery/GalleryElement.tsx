@@ -1,5 +1,8 @@
 import React from "react";
-import { ImgurImage } from "../../data/interfaces/imgur.interfaces";
+import {
+  ImgurImage,
+  ImgurImageInfo,
+} from "../../data/interfaces/imgur.interfaces";
 import CardVideo from "../Card/CardVideo";
 import CardImage from "../Card/CardImage";
 import CardContainer from "../Card/CardContainer";
@@ -11,40 +14,35 @@ interface GalleryElementProps {
 const GalleryElement = ({ element }: GalleryElementProps) => {
   let content;
 
-  if (element.images && element.images.length > 0) {
-    // If there are multiple images, find the image with id matching the cover property
-    const coverImage = element.images.find(
-      (image) => image.id === element.cover
-    );
+  // to avoid the anomaly of the cover image being
+  // undefined which happens when the type of data sent is ImgurImageInfo
+  const coverImage = element.cover
+    ? element.images.find((image) => image.id === element.cover)
+    : (element as any as ImgurImageInfo);
 
-    if (coverImage) {
-      const source = `http://${coverImage.link.split("//")[1]}`;
-      content = (
-        <CardContainer
-          id={element.id}
-          title={element.title}
-          description={{
-            upvotes: element.ups,
-            downvotes: element.downs,
-            views: element.views,
-            score: element.score,
-            commentCount: element.comment_count,
-          }}
-        >
-          {coverImage.type?.includes("video") ? (
-            <CardVideo source={source} />
-          ) : (
-            <CardImage source={source} title={element.title} />
-          )}
-        </CardContainer>
-      );
-    } else {
-      // Handle the case where the cover image is not found within the images array
-      content = <CardContainer isError={true} />;
-    }
+  if (coverImage) {
+    const source = `http://${coverImage.link.split("//")[1]}`;
+    content = (
+      <CardContainer
+        id={element.id}
+        title={element.title}
+        description={{
+          upvotes: element.ups,
+          downvotes: element.downs,
+          views: element.views,
+          score: element.score,
+          commentCount: element.comment_count,
+        }}
+      >
+        {coverImage.type?.includes("video") ? (
+          <CardVideo source={source} />
+        ) : (
+          <CardImage source={source} title={element.title} />
+        )}
+      </CardContainer>
+    );
   } else {
-    // If there's only one image or no images, use a simple logic
-    content = <CardContainer />;
+    content = <CardContainer isError={true} />;
   }
 
   return content;
