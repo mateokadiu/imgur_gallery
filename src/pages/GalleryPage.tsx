@@ -1,5 +1,8 @@
 import { Box } from "@mui/material";
 import React, { useContext, useEffect, useMemo, useState } from "react";
+import { alpha, styled } from "@mui/material/styles";
+import { pink } from "@mui/material/colors";
+import Switch from "@mui/material/Switch";
 import SectionMenu from "../components/SectionMenu";
 import Gallery from "../components/Gallery/Gallery";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -13,11 +16,25 @@ import {
   selectAllImagesUser,
 } from "../data/store/gallerySlice";
 
+const PinkSwitch = styled(Switch)(({ theme }) => ({
+  "& .MuiSwitch-switchBase.Mui-checked": {
+    color: pink[600],
+    "&:hover": {
+      backgroundColor: alpha(pink[600], theme.palette.action.hoverOpacity),
+    },
+  },
+  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+    backgroundColor: pink[600],
+  },
+}));
+
+const label = { inputProps: { "aria-label": "Show Viral" } };
+
 const GalleryPage = () => {
   const [getGallery, result] = useLazyGetGalleryQuery();
   const {
     state: { section, sort, window, showViral, page },
-    action: { setPage },
+    action: { setPage, setShowViral },
   } = useContext(RootContext);
 
   const atEndOfPage = useReachedBottom();
@@ -29,6 +46,7 @@ const GalleryPage = () => {
   console.log("atEndOfPage", atEndOfPage);
 
   useEffect(() => {
+    console.log(showViral);
     getGallery({
       section,
       sort,
@@ -36,7 +54,7 @@ const GalleryPage = () => {
       page,
       showViral,
     });
-  }, []);
+  }, [showViral]);
 
   useMemo(() => {
     if (atEndOfPage) {
@@ -61,6 +79,14 @@ const GalleryPage = () => {
       }}
     >
       <SectionMenu />
+      <PinkSwitch
+        {...label}
+        checked={showViral}
+        onClick={() => {
+          setPage(0);
+          setShowViral(!showViral);
+        }}
+      />
       {selectAllImagesHotData.length > 0 ||
       selectAllImagesTopData.length > 0 ||
       selectAllImagesUserData.length > 0 ? (
