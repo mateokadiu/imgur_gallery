@@ -3,8 +3,8 @@ import {
   ImgurImage,
   ImgurImageInfo,
 } from "../../data/interfaces/imgur.interfaces";
-import CardVideo from "../Card/CardVideo";
-import CardImage from "../Card/CardImage";
+import CardVideo from "../Card/CardVideo/CardVideo";
+import CardImage from "../Card/CardImage/CardImage";
 import CardContainer from "../Card/CardContainer";
 import { Link } from "react-router-dom";
 

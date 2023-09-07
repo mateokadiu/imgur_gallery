@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import GalleryPage from "./pages/GalleryPage";
-import ImageDetailsPage from "./pages/ImageDetailsPage";
+import GalleryPage from "./pages/GalleryPage/GalleryPage";
+import ImageDetailsPage from "./pages/ImageDetailsPage/ImageDetailsPage";
 
 function App() {
   return (

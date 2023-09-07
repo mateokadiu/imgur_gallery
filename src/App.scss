@@ -1,48 +1,58 @@
 div.description {
-    display: flex;
-    gap: 5%;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    color: #b4b9c2;
-    cursor: pointer;
-  
-    svg {
-      & path {
-        fill: #b4b9c2;
-      }
-    }
-  
-    &.upvote:hover,
-    &.upvote:active {
-      color: greenyellow;
-      & svg path {
-        fill: greenyellow;
-      }
-    }
-  
-    &.downvote:hover,
-    &.downvote:active {
-      color: red;
-      & svg path {
-        fill: red;
-      }
-    }
-  
-    &.comment:hover,
-    &.comment:active {
-      color: blue;
-      & svg path {
-        fill: blue;
-      }
-    }
-  
-    &.views:hover,
-    &.views:active {
-      color: orange;
-      svg path {
-        fill: orange;
-      }
+  display: flex;
+  gap: 5%;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #b4b9c2;
+  cursor: pointer;
+
+  svg {
+    & path {
+      fill: #b4b9c2;
     }
   }
-  
+
+  &.upvote:hover,
+  &.upvote:active {
+    color: greenyellow;
+    & svg path {
+      fill: greenyellow;
+    }
+  }
+
+  &.downvote:hover,
+  &.downvote:active {
+    color: red;
+    & svg path {
+      fill: red;
+    }
+  }
+
+  &.comment:hover,
+  &.comment:active {
+    color: blue;
+    & svg path {
+      fill: blue;
+    }
+  }
+
+  &.views:hover,
+  &.views:active {
+    color: orange;
+    svg path {
+      fill: orange;
+    }
+  }
+}
+
+.card-video,
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  @media (max-width: 600px) {
+    object-fit: contain;
+  }
+}

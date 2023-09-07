@@ -1,16 +1,14 @@
 // @ts-nocheck
 import React, { useEffect, useRef } from "react";
 import { register } from "swiper/element/bundle";
-import CardImage from "./Card/CardImage";
 import { ImgurImageInfo } from "../data/interfaces/imgur.interfaces";
-import CardVideo from "./Card/CardVideo";
+import CardImage from "./Card/CardImage/CardImage";
+import CardVideo from "./Card/CardVideo/CardVideo";
 
 register();
 
 interface SwipperComponentProps {
-  isImage?: boolean;
   images?: ImgurImageInfo[];
-  video?: string;
 }
 
 const SwipperComponent = ({ images }: SwipperComponentProps) => {
@@ -58,7 +56,6 @@ const SwipperComponent = ({ images }: SwipperComponentProps) => {
               source={`http://${image.link.split("//")[1]}`}
             />
           )}
-          {/* </div> */}
         </swiper-slide>
       ))}
     </swiper-container>

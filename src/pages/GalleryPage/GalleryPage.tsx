@@ -1,17 +1,17 @@
+import "./GalleryPage.scss";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
 
-import SectionMenu from "../components/SectionMenu";
-import Gallery from "../components/Gallery/Gallery";
-import LoadingSpinner from "../components/LoadingSpinner";
-import { useLazyGetGalleryQuery } from "../data/api/imgur.api";
-import useReachedBottom from "../hooks/useReachedBottom";
-import { selectGalleryState } from "../data/store/gallerySlice";
-import WindowSelector from "../components/WindowSelector";
-import SortSelector from "../components/SortSelector";
-import "./GalleryPage.scss"; // Import the SCSS file for GalleryPage
-import ShowViralSwitch from "../components/ShowViralSwitch";
+import SectionMenu from "../../components/SectionMenu";
+import Gallery from "../../components/Gallery/Gallery";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { useLazyGetGalleryQuery } from "../../data/api/imgur.api";
+import useReachedBottom from "../../hooks/useReachedBottom";
+import { selectGalleryState } from "../../data/store/gallerySlice";
+import WindowSelector from "../../components/WindowSelector";
+import SortSelector from "../../components/SortSelector";
+import ShowViralSwitch from "../../components/ShowViralSwitch";
 
 const GalleryPage = () => {
   const [getGallery] = useLazyGetGalleryQuery();

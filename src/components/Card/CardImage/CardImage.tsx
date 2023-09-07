@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LoadingSpinner from "../LoadingSpinner";
+import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 import "./CardImage.scss";
 
 interface CardImageProps {

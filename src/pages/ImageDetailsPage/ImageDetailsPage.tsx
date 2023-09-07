@@ -1,13 +1,13 @@
+import "./ImageDetailsPage.scss";
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
-import { useGetGalleryByIdQuery } from "../data/api/imgur.api";
-import CardContainer from "../components/Card/CardContainer";
-import LoadingSpinner from "../components/LoadingSpinner";
-import SwipperComponent from "../components/SwipperComponent";
-import "./ImageDetailsPage.scss";
+import { useGetGalleryByIdQuery } from "../../data/api/imgur.api";
+import CardContainer from "../../components/Card/CardContainer";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import SwipperComponent from "../../components/SwipperComponent";
 const ImageDetailsPage = () => {
   const { id } = useParams();
   const result = useGetGalleryByIdQuery(id as any);
@@ -51,7 +51,7 @@ const ImageDetailsPage = () => {
             }}
             title={result.data.title}
           >
-            <SwipperComponent images={result.data.images} isImage={true} />
+            <SwipperComponent images={result.data.images} />
           </CardContainer>
         ) : null}
       </div>
