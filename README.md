@@ -1,10 +1,5 @@
 # Imgur Gallery Web App
 
-[![GitHub issues](https://img.shields.io/github/issues/your-username/imgur-gallery.svg)](https://github.com/your-username/imgur-gallery/issues)
-[![GitHub forks](https://img.shields.io/github/forks/your-username/imgur-gallery.svg)](https://github.com/your-username/imgur-gallery/network)
-[![GitHub stars](https://img.shields.io/github/stars/your-username/imgur-gallery.svg)](https://github.com/your-username/imgur-gallery/stargazers)
-[![GitHub license](https://img.shields.io/github/license/your-username/imgur-gallery.svg)](https://github.com/your-username/imgur-gallery/blob/master/LICENSE)
-
 ## Overview
 
 This repository contains a web application that allows users to browse the Imgur gallery. It leverages the Imgur API to fetch images and display them in a responsive grid. Users can select different gallery sections, specify sorting options, and view image details.
@@ -35,7 +30,7 @@ This repository contains a web application that allows users to browse the Imgur
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/your-username/imgur-gallery.git
+   git clone https://github.com/mateokadiu/imgur-gallery.git
 
    ```
 
@@ -60,7 +55,7 @@ This repository contains a web application that allows users to browse the Imgur
 
 ## Usage
 
-The app should now be running at http://[your_ip]:3000. Open it in your web browser to browse the Imgur gallery.
+The app should now be running at http://[your_ip_address]:3000. Open it in your web browser to browse the Imgur gallery.
 
 ## Project Structure
 
@@ -83,4 +78,4 @@ Contributions are welcome! Feel free to open issues and pull requests.
 
 ## Contact
 
-If you have any questions or suggestions, please contact [your-email@example.com](mailto:your-email@example.com).
+If you have any questions or suggestions, please contact [mateokadiu18@gmail.com](mailto:mateokadiu18@gmail.com).
