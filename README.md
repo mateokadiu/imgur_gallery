@@ -49,8 +49,15 @@ This repository contains a web application that allows users to browse the Imgur
    ```
 
 4. Start the development server:
+
    ```shell
    npm start
+   ```
+
+5. Create the .env file in the root directory of the project and add the following:
+   ```shell
+   REACT_APP_BASE_URL=https://api.imgur.com/3
+   REACT_APP_CLIENT_ID=40e7bfb02092215
    ```
 
 ## Usage
