@@ -1,45 +1,25 @@
-import React, { useContext, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Box, FormControlLabel, styled } from "@mui/material";
-import { alpha } from "@mui/material/styles";
-import { pink } from "@mui/material/colors";
-import Switch from "@mui/material/Switch";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Box } from "@mui/material";
+
 import SectionMenu from "../components/SectionMenu";
 import Gallery from "../components/Gallery/Gallery";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useLazyGetGalleryQuery } from "../data/api/imgur.api";
 import useReachedBottom from "../hooks/useReachedBottom";
-import {
-  selectGalleryState,
-  setGalleryShowViral,
-} from "../data/store/gallerySlice";
+import { selectGalleryState } from "../data/store/gallerySlice";
 import WindowSelector from "../components/WindowSelector";
 import SortSelector from "../components/SortSelector";
-
-const PinkSwitch = styled(Switch)(({ theme }) => ({
-  "& .MuiSwitch-switchBase.Mui-checked": {
-    color: pink[600],
-    "&:hover": {
-      backgroundColor: alpha(pink[600], theme.palette.action.hoverOpacity),
-    },
-  },
-  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-    backgroundColor: pink[600],
-  },
-}));
-
-const label = { inputProps: { "aria-label": "Show Viral" } };
+import "./GalleryPage.scss"; // Import the SCSS file for GalleryPage
+import ShowViralSwitch from "../components/ShowViralSwitch";
 
 const GalleryPage = () => {
-  const [getGallery, result] = useLazyGetGalleryQuery();
+  const [getGallery] = useLazyGetGalleryQuery();
 
   const { page, window, section, sort, showViral } =
     useSelector(selectGalleryState);
 
-  console.log(page);
-
   const atEndOfPage = useReachedBottom();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (page === 0) {
@@ -65,33 +45,13 @@ const GalleryPage = () => {
     }
   }, [atEndOfPage]);
 
-  console.log(atEndOfPage);
-
   return (
     <Box
-      sx={{
-        backgroundColor: "#2e3035",
-        minHeight: "100vh",
-        height: result.isLoading ? "100vh" : "auto",
-      }}
+      className="gallery-page-container" // Apply styling from GalleryPage.scss
     >
       <SectionMenu />
 
-      <FormControlLabel
-        control={
-          <PinkSwitch
-            {...label}
-            checked={showViral}
-            onClick={() => {
-              dispatch(setGalleryShowViral(!showViral));
-            }}
-          />
-        }
-        sx={{
-          color: "#fff",
-        }}
-        label="Show Viral"
-      />
+      <ShowViralSwitch />
 
       {section === "top" && <WindowSelector />}
       {section === "user" && <SortSelector />}

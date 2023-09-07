@@ -1,9 +1,19 @@
 // @ts-nocheck
 import React, { useEffect, useRef } from "react";
 import { register } from "swiper/element/bundle";
+import CardImage from "./Card/CardImage";
+import { ImgurImageInfo } from "../data/interfaces/imgur.interfaces";
+import CardVideo from "./Card/CardVideo";
 
 register();
-const SwipperComponent = () => {
+
+interface SwipperComponentProps {
+  isImage?: boolean;
+  images?: ImgurImageInfo[];
+  video?: string;
+}
+
+const SwipperComponent = ({ images }: SwipperComponentProps) => {
   const swiperElRef = useRef(null);
 
   useEffect(() => {
@@ -25,9 +35,32 @@ const SwipperComponent = () => {
       navigation="true"
       pagination="true"
     >
-      <swiper-slide>Slide 1</swiper-slide>
-      <swiper-slide>Slide 2</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
+      {images?.map((image, index) => (
+        <swiper-slide
+          style={{
+            width: "100%",
+            height: "100%",
+            minHeight: "400px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          key={index}
+        >
+          {image.type?.includes("video") ? (
+            <CardVideo
+              title={image.title}
+              source={`http://${image.link.split("//")[1]}`}
+            />
+          ) : (
+            <CardImage
+              title={image.title}
+              source={`http://${image.link.split("//")[1]}`}
+            />
+          )}
+          {/* </div> */}
+        </swiper-slide>
+      ))}
     </swiper-container>
   );
 };

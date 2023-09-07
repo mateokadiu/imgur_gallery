@@ -6,6 +6,7 @@ import {
 import CardVideo from "../Card/CardVideo";
 import CardImage from "../Card/CardImage";
 import CardContainer from "../Card/CardContainer";
+import { Link } from "react-router-dom";
 
 interface GalleryElementProps {
   element: ImgurImage;
@@ -23,23 +24,25 @@ const GalleryElement = ({ element }: GalleryElementProps) => {
   if (coverImage) {
     const source = `http://${coverImage.link.split("//")[1]}`;
     content = (
-      <CardContainer
-        id={element.id}
-        title={element.title}
-        description={{
-          upvotes: element.ups,
-          downvotes: element.downs,
-          views: element.views,
-          score: element.score,
-          commentCount: element.comment_count,
-        }}
-      >
-        {coverImage.type?.includes("video") ? (
-          <CardVideo source={source} />
-        ) : (
-          <CardImage source={source} title={element.title} />
-        )}
-      </CardContainer>
+      <Link to={`/gallery/${element.id}`}>
+        <CardContainer
+          id={element.id}
+          title={element.title}
+          description={{
+            upvotes: element.ups,
+            downvotes: element.downs,
+            views: element.views,
+            score: element.score,
+            commentCount: element.comment_count,
+          }}
+        >
+          {coverImage.type?.includes("video") ? (
+            <CardVideo source={source} />
+          ) : (
+            <CardImage source={source} title={element.title} />
+          )}
+        </CardContainer>
+      </Link>
     );
   } else {
     content = <CardContainer isError={true} />;

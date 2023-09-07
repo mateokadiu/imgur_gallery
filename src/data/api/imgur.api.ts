@@ -22,7 +22,7 @@ export const imgurApi = createApi({
       transformResponse: (res: { data: ImgurImage[] }) => res.data,
       providesTags: ["Gallery"],
     }),
-    getGalleryById: builder.query<any, string>({
+    getGalleryById: builder.query<ImgurImage, string>({
       query: (id) => `/gallery/${id}`,
       transformResponse: (res: any) => res.data,
     }),
