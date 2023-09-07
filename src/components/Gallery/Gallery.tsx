@@ -3,62 +3,20 @@ import GalleryElement from "./GalleryElement";
 import { Masonry } from "react-masonry/dist";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { useSelector } from "react-redux";
-import {
-  selectAllImagesHot,
-  selectAllImagesTop,
-  selectAllImagesUser,
-} from "../../data/store/gallerySlice";
+import { selectAllImages } from "../../data/store/gallerySlice";
 import { RootContext } from "../../contexts/RootContext";
 
 const Gallery = () => {
   const { width } = useWindowDimensions();
 
-  const galleryUserSectionData = useSelector(selectAllImagesUser);
-  const galleryHotSectionData = useSelector(selectAllImagesHot);
-  const galleryTopSectionData = useSelector(selectAllImagesTop);
+  const galleryData = useSelector(selectAllImages);
 
   const {
     state: { section },
   } = useContext(RootContext);
 
   const memoizedList = useMemo(() => {
-    if (section === "hot") {
-      return galleryHotSectionData.map((value) => (
-        <div
-          key={value.id}
-          style={{
-            width: width > 1000 ? "30%" : width > 700 ? "45%" : "80%",
-            height: value.cover_height || 500,
-            maxHeight: "500px",
-            minHeight: "300px",
-            padding: "10px",
-            marginLeft: width > 1000 ? "1%" : "2.5%",
-          }}
-        >
-          <GalleryElement key={value.id} element={value} />
-        </div>
-      ));
-    } else if (section === "top") {
-      return galleryTopSectionData.map((value) => {
-        return (
-          <div
-            key={value.id}
-            style={{
-              width: width > 1000 ? "30%" : width > 700 ? "45%" : "80%",
-              height: value.cover_height || 500,
-              maxHeight: "500px",
-              minHeight: "300px",
-              padding: "10px",
-              marginLeft: width > 1000 ? "1%" : "2.5%",
-            }}
-          >
-            <GalleryElement key={value.id} element={value} />
-          </div>
-        );
-      });
-    }
-
-    return galleryUserSectionData.map((value) => (
+    return galleryData.map((value) => (
       <div
         key={value.id}
         style={{
@@ -73,13 +31,7 @@ const Gallery = () => {
         <GalleryElement key={value.id} element={value} />
       </div>
     ));
-  }, [
-    galleryUserSectionData,
-    galleryHotSectionData,
-    galleryTopSectionData,
-    section,
-    width,
-  ]);
+  }, [galleryData, section, width]);
 
   return (
     <div

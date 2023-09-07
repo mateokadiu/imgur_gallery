@@ -11,10 +11,7 @@ export const imgurApi = createApi({
   }),
   tagTypes: ["Gallery"],
   endpoints: (builder) => ({
-    getGallery: builder.query<
-      { data: ImgurImage[]; section: string },
-      GalleryOptions
-    >({
+    getGallery: builder.query<ImgurImage[], GalleryOptions>({
       query: (options) => ({
         url: `/gallery/${options.section}/${options.sort}/${options?.window}/${options?.page}`,
         method: "GET",
@@ -22,10 +19,7 @@ export const imgurApi = createApi({
           showViral: options.showViral,
         },
       }),
-      transformResponse: (res: { data: ImgurImage[] }, _, arg) => ({
-        data: res.data,
-        section: arg.section,
-      }),
+      transformResponse: (res: { data: ImgurImage[] }) => res.data,
       providesTags: ["Gallery"],
     }),
     getCoverImage: builder.query<any, string>({

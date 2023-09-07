@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, FormControlLabel, styled } from "@mui/material";
 import { alpha } from "@mui/material/styles";
@@ -11,9 +11,8 @@ import { useLazyGetGalleryQuery } from "../data/api/imgur.api";
 import { RootContext } from "../contexts/RootContext";
 import useReachedBottom from "../hooks/useReachedBottom";
 import {
-  resetSection,
+  resetGalleryState,
   selectGalleryState,
-  selectPageBySection,
 } from "../data/store/gallerySlice";
 import WindowSelector from "../components/WindowSelector";
 import SortSelector from "../components/SortSelector";
@@ -39,7 +38,7 @@ const GalleryPage = () => {
     action: { setShowViral },
   } = useContext(RootContext);
 
-  const page = useSelector(selectPageBySection(section));
+  const { page } = useSelector(selectGalleryState);
 
   console.log(page);
 
@@ -70,9 +69,7 @@ const GalleryPage = () => {
     }
   }, [atEndOfPage]);
 
-  const isLoading = page < 1;
-
-  console.log(isLoading);
+  console.log(atEndOfPage);
 
   return (
     <Box
@@ -91,7 +88,7 @@ const GalleryPage = () => {
             checked={showViral}
             onClick={() => {
               setShowViral(!showViral);
-              dispatch(resetSection(section));
+              dispatch(resetGalleryState());
             }}
           />
         }
@@ -104,7 +101,7 @@ const GalleryPage = () => {
       {section === "top" && <WindowSelector />}
       {section === "user" && <SortSelector />}
 
-      {isLoading ? (
+      {page < 1 ? (
         <Box
           sx={{
             width: "100%",

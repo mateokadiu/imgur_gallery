@@ -4,7 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { RootContext } from "../contexts/RootContext";
 import { useDispatch } from "react-redux";
-import { resetSection } from "../data/store/gallerySlice";
+import { resetGalleryState } from "../data/store/gallerySlice";
 
 export default function SortSelector() {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
@@ -23,7 +23,7 @@ export default function SortSelector() {
 
   const handleMenuItemClick = (value: typeof sort) => {
     setSort(value);
-    dispatch(resetSection("user"));
+    dispatch(resetGalleryState());
     setMenuAnchorEl(null);
   };
 

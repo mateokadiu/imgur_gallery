@@ -10,6 +10,8 @@ import { RootContext } from "../contexts/RootContext";
 import TagFacesOutlinedIcon from "@mui/icons-material/TagFacesOutlined";
 import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 import WhatshotOutlinedIcon from "@mui/icons-material/WhatshotOutlined";
+import { resetGalleryState } from "../data/store/gallerySlice";
+import { useDispatch } from "react-redux";
 
 const SectionMenu = () => {
   const {
@@ -17,11 +19,16 @@ const SectionMenu = () => {
     action: { setSection },
   } = useContext(RootContext);
 
+  const dispatch = useDispatch();
+
   const handleChange = (
     event: React.MouseEvent<HTMLElement>,
     newSection: "user" | "hot" | "top" | null
   ) => {
-    newSection && setSection(newSection);
+    if (newSection) {
+      setSection(newSection);
+      dispatch(resetGalleryState());
+    }
   };
 
   return (
