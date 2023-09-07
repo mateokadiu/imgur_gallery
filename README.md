@@ -1,46 +1,86 @@
-# Getting Started with Create React App
+# Imgur Gallery Web App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![GitHub issues](https://img.shields.io/github/issues/your-username/imgur-gallery.svg)](https://github.com/your-username/imgur-gallery/issues)
+[![GitHub forks](https://img.shields.io/github/forks/your-username/imgur-gallery.svg)](https://github.com/your-username/imgur-gallery/network)
+[![GitHub stars](https://img.shields.io/github/stars/your-username/imgur-gallery.svg)](https://github.com/your-username/imgur-gallery/stargazers)
+[![GitHub license](https://img.shields.io/github/license/your-username/imgur-gallery.svg)](https://github.com/your-username/imgur-gallery/blob/master/LICENSE)
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+This repository contains a web application that allows users to browse the Imgur gallery. It leverages the Imgur API to fetch images and display them in a responsive grid. Users can select different gallery sections, specify sorting options, and view image details.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Imgur API Integration
+- Responsive Design
+- Gallery Sections (Hot, Top, User)
+- Sorting Options
+- Image Details (Large Image, Title, Description, Votes, Score)
+- Infinite Scroll Pagination
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+- React
+- React Router
+- Redux Toolkit
+- Redux Persist
+- RTK Query
+- Material-UI
+- Swiper.js
+- React Masonry
+- TypeScript
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+1. Clone the repository:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```shell
+   git clone https://github.com/your-username/imgur-gallery.git
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Navigate to the project directory:
 
-### `npm run eject`
+   ```shell
+   cd imgur-gallery
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Install dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   ```shell
+   npm install
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   ```
 
-## Learn More
+4. Start the development server:
+   ```shell
+   npm start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Usage
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The app should now be running at http://[your_ip]:3000. Open it in your web browser to browse the Imgur gallery.
+
+## Project Structure
+
+- **src/components**: Reusable UI components.
+- **src/hooks**: Custom hooks, including `useReachedBottom` for infinite scroll.
+- **src/pages**: Individual pages of the app.
+- **src/data**: API queries, state management and configuration.
+
+## License
+
+This project is open-source and available under the MIT License.
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues and pull requests.
+
+## Acknowledgments
+
+- Thanks to the Imgur API for providing access to the gallery data.
+
+## Contact
+
+If you have any questions or suggestions, please contact [your-email@example.com](mailto:your-email@example.com).

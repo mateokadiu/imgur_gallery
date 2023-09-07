@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import LoadingSpinner from "../LoadingSpinner";
+import "./CardImage.scss";
 
 interface CardImageProps {
   source: string;
@@ -17,11 +18,7 @@ const CardImage = ({ source, title }: CardImageProps) => {
     <>
       {isLoading && <LoadingSpinner />}
       <img
-        style={{
-          objectFit: "cover",
-          width: "100%",
-          height: "100%",
-        }}
+        className="card-image"
         onLoad={handleLoad}
         src={source}
         alt={title} // Provide alt text for accessibility.

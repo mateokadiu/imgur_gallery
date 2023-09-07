@@ -14,9 +14,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <Provider store={store}>
-    {/* <PersistGate loading={<LoadingSpinner />} persistor={persistor}> */}
-    <App />
-    {/* </PersistGate> */}
+    <PersistGate loading={<LoadingSpinner />} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>
 );
 
