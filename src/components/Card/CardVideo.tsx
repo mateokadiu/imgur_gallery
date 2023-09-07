@@ -13,7 +13,6 @@ const CardVideo = ({ source }: CardVideoProps) => {
       }}
       height="100%"
       controls
-      autoPlay={true}
       muted
     >
       <source src={source} />
