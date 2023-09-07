@@ -57,16 +57,16 @@ This repository contains a web application that allows users to browse the Imgur
 
 The app should now be running at http://[your_ip_address]:3000. Open it in your web browser to browse the Imgur gallery.
 
+You can also access the live website hosted on Vercel:
+
+[Imgur Gallery Live Demo](https://imgur-gallery-khaki.vercel.app/)
+
 ## Project Structure
 
 - **src/components**: Reusable UI components.
-- **src/hooks**: Custom hooks, including `useReachedBottom` for infinite scroll.
+- **src/hooks**: Custom hooks, including `useReachedBottom` for infinite scroll and `useWindowDimensions` for getting the dimensions of the screen the react way (related to Masonry layout).
 - **src/pages**: Individual pages of the app.
-- **src/data**: API queries, state management and configuration.
-
-## License
-
-This project is open-source and available under the MIT License.
+- **src/data**: API queries, state management, interfaces and configuration.
 
 ## Contributing
 
