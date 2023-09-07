@@ -9,6 +9,7 @@ const CardDetailsDownvote = ({ downvotes }: CardDetailsDownvoteProps) => {
     <div
       style={{ display: "flex", flexDirection: "row", gap: "5%" }}
       className="description downvote"
+      onClick={(e) => e.preventDefault()}
     >
       {downvotes}
       <svg

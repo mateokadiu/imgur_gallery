@@ -22,11 +22,11 @@ export const imgurApi = createApi({
       transformResponse: (res: { data: ImgurImage[] }) => res.data,
       providesTags: ["Gallery"],
     }),
-    getCoverImage: builder.query<any, string>({
-      query: (id) => `/image/${id}`,
+    getGalleryById: builder.query<any, string>({
+      query: (id) => `/gallery/${id}`,
       transformResponse: (res: any) => res.data,
     }),
   }),
 });
 
-export const { useLazyGetGalleryQuery, useGetCoverImageQuery } = imgurApi;
+export const { useLazyGetGalleryQuery, useGetGalleryByIdQuery } = imgurApi;
