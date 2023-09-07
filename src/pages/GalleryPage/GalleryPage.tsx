@@ -46,15 +46,23 @@ const GalleryPage = () => {
   }, [atEndOfPage]);
 
   return (
-    <Box
-      className="gallery-page-container" // Apply styling from GalleryPage.scss
-    >
-      <SectionMenu />
-
-      <ShowViralSwitch />
-
-      {section === "top" && <WindowSelector />}
-      {section === "user" && <SortSelector />}
+    <Box className="gallery-page-container">
+      <Box className="gallery-page-header">
+        <Box
+          display="flex"
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="space-around"
+          gap={5}
+        >
+          <SectionMenu />
+          <ShowViralSwitch />
+        </Box>
+        <Box>
+          {section === "top" && <WindowSelector />}
+          {section === "user" && <SortSelector />}
+        </Box>
+      </Box>
 
       {page < 1 ? (
         <Box

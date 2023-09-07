@@ -23,7 +23,7 @@ export default function SortSelector() {
   };
 
   return (
-    <div>
+    <>
       <Button
         id="sorting-button"
         aria-controls={open ? "sorting-menu" : undefined}
@@ -67,6 +67,6 @@ export default function SortSelector() {
           Rising
         </MenuItem>
       </Menu>
-    </div>
+    </>
   );
 }

@@ -29,7 +29,7 @@ export default function WindowSelector() {
   };
 
   return (
-    <div>
+    <>
       <Button
         id="window-button"
         aria-controls={open ? "window-menu" : undefined}
@@ -79,6 +79,6 @@ export default function WindowSelector() {
           All
         </MenuItem>
       </Menu>
-    </div>
+    </>
   );
 }

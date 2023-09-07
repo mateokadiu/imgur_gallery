@@ -1,4 +1,18 @@
 .gallery-page-container {
   background-color: #2e3035;
   min-height: 100vh;
+  padding: 2% 0;
+}
+
+.gallery-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-bottom: 2%;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 }
