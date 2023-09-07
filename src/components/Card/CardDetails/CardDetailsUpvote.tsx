@@ -6,7 +6,7 @@ interface CardDetailsUpvoteProps {
 
 const CardDetailsUpvote = ({ upvotes }: CardDetailsUpvoteProps) => {
   return (
-    <div className="description upvote">
+    <div className="description upvote" onClick={(e) => e.preventDefault()}>
       {upvotes}
       <svg
         width="16"

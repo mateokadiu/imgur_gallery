@@ -6,11 +6,7 @@ interface CardDetailsDownvoteProps {
 
 const CardDetailsDownvote = ({ downvotes }: CardDetailsDownvoteProps) => {
   return (
-    <div
-      style={{ display: "flex", flexDirection: "row", gap: "5%" }}
-      className="description downvote"
-      onClick={(e) => e.preventDefault()}
-    >
+    <div className="description downvote" onClick={(e) => e.preventDefault()}>
       {downvotes}
       <svg
         width="16"

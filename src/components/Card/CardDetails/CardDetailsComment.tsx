@@ -6,7 +6,7 @@ interface CardDetailsCommentProps {
 
 const CardDetailsComment = ({ comment }: CardDetailsCommentProps) => {
   return (
-    <div className="description comment">
+    <div className="description comment" onClick={(e) => e.preventDefault()}>
       {comment}
       <svg
         width="16"

@@ -6,7 +6,7 @@ interface CardDetailsViewsProps {
 
 const CardDetailsViews = ({ views }: CardDetailsViewsProps) => {
   return (
-    <div className="description views">
+    <div className="description views" onClick={(e) => e.preventDefault()}>
       {views}
       <svg
         width="16"
