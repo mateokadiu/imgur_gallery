@@ -9,7 +9,10 @@ function useReachedBottom() {
       const documentHeight = document.documentElement.scrollHeight;
       const scrollTop = window.scrollY;
 
-      if (scrollTop + windowHeight >= documentHeight * 0.85) {
+      if (
+        scrollTop + windowHeight >=
+        documentHeight * (window.screenX > 600 ? 0.85 : 0.6)
+      ) {
         setReachedBottom(true);
       } else {
         setReachedBottom(false);
