@@ -7,6 +7,7 @@ import {
   selectAllImages,
   selectGalleryState,
 } from "../../data/store/gallerySlice";
+import "./Gallery.scss";
 
 const Gallery = () => {
   const { width } = useWindowDimensions();
@@ -19,13 +20,9 @@ const Gallery = () => {
     return galleryData.map((value) => (
       <div
         key={value.id}
+        className="gallery-item"
         style={{
-          width: width > 1000 ? "30%" : width > 700 ? "45%" : "80%",
-          height: value.cover_height || 500,
-          maxHeight: "500px",
-          minHeight: "300px",
-          padding: "10px",
-          marginLeft: width > 1000 ? "1%" : "2.5%",
+          height: value.cover_height + 150 || 500,
         }}
       >
         <GalleryElement key={value.id} element={value} />
@@ -43,7 +40,7 @@ const Gallery = () => {
     >
       <Masonry
         style={{
-          width: width > 1000 ? "80%" : width > 700 ? "85%" : "90%",
+          width: width > 1000 ? "90%" : width > 700 ? "90%" : "85%",
         }}
       >
         {memoizedList}

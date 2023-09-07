@@ -1,0 +1,45 @@
+/* Gallery.scss */
+
+.gallery-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Default style for gallery items */
+.gallery-item {
+  padding: 10px;
+  min-height: 300px;
+  max-height: 500px;
+
+  margin-left: 2.5%;
+
+  @media (max-width: 400px) {
+    width: 80%;
+  }
+
+  @media (max-width: 700px) {
+    max-height: 700px;
+  }
+
+  @media (max-width: 200px) {
+    display: none;
+  }
+
+  @media (min-width: 401px) and (max-width: 700px) {
+    width: 90%; /* Adjust width for screens between 401px and 700px */
+  }
+
+  @media (min-width: 701px) and (max-width: 1000px) {
+    width: 45%; /* Adjust width for screens between 701px and 1000px */
+  }
+
+  @media (min-width: 1001px) {
+    width: 30%; /* Adjust width for screens wider than 1000px */
+    margin-left: 1%;
+  }
+
+  @media (min-width: 1400px) {
+    width: 23%;
+  }
+}
