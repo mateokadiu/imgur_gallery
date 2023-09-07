@@ -8,11 +8,10 @@ import SectionMenu from "../components/SectionMenu";
 import Gallery from "../components/Gallery/Gallery";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useLazyGetGalleryQuery } from "../data/api/imgur.api";
-import { RootContext } from "../contexts/RootContext";
 import useReachedBottom from "../hooks/useReachedBottom";
 import {
-  resetGalleryState,
   selectGalleryState,
+  setGalleryShowViral,
 } from "../data/store/gallerySlice";
 import WindowSelector from "../components/WindowSelector";
 import SortSelector from "../components/SortSelector";
@@ -33,12 +32,9 @@ const label = { inputProps: { "aria-label": "Show Viral" } };
 
 const GalleryPage = () => {
   const [getGallery, result] = useLazyGetGalleryQuery();
-  const {
-    state: { section, sort, window, showViral },
-    action: { setShowViral },
-  } = useContext(RootContext);
 
-  const { page } = useSelector(selectGalleryState);
+  const { page, window, section, sort, showViral } =
+    useSelector(selectGalleryState);
 
   console.log(page);
 
@@ -87,8 +83,7 @@ const GalleryPage = () => {
             {...label}
             checked={showViral}
             onClick={() => {
-              setShowViral(!showViral);
-              dispatch(resetGalleryState());
+              dispatch(setGalleryShowViral(!showViral));
             }}
           />
         }

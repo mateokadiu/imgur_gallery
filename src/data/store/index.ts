@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import storageSession from "redux-persist/lib/storage/session";
 import { imgurApi } from "../api/imgur.api";
 import { gallerySlice } from "./gallerySlice";
 
 const persistConfig = {
   key: gallerySlice.name,
-  storage,
+  storage: storageSession,
+  timeout: 3000000,
 };
 
 const persistedReducer = persistReducer(persistConfig, gallerySlice.reducer);

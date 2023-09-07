@@ -13,9 +13,22 @@ const galleryEntityAdapter = createEntityAdapter<ImgurImage>({
 
 const initialGalleryState = galleryEntityAdapter.getInitialState();
 
-const initialState = {
+interface GalleryState {
+  data: ReturnType<typeof galleryEntityAdapter.getInitialState>;
+  section: "hot" | "top" | "user";
+  sort: "top" | "viral" | "time" | "rising";
+  window: "day" | "week" | "month" | "year" | "all" | undefined;
+  page: number;
+  showViral: boolean;
+}
+
+const initialState: GalleryState = {
   data: initialGalleryState,
   page: 0,
+  section: "user",
+  sort: "time",
+  window: "week",
+  showViral: false,
 };
 
 export const gallerySlice = createSlice({
@@ -23,6 +36,26 @@ export const gallerySlice = createSlice({
   initialState,
   reducers: {
     resetGalleryState: () => initialState,
+    setGallerySection: (state, action) => {
+      state.section = action.payload;
+      state.page = 0;
+      state.data = initialGalleryState;
+    },
+    setGallerySort: (state, action) => {
+      state.sort = action.payload;
+      state.page = 0;
+      state.data = initialGalleryState;
+    },
+    setGalleryWindow: (state, action) => {
+      state.window = action.payload;
+      state.page = 0;
+      state.data = initialGalleryState;
+    },
+    setGalleryShowViral: (state, action) => {
+      state.showViral = action.payload;
+      state.page = 0;
+      state.data = initialGalleryState;
+    },
   },
   extraReducers: (builder) =>
     builder.addMatcher(
@@ -47,4 +80,10 @@ export const { selectAll: selectAllImages } = galleryEntityAdapter.getSelectors(
   (state: RootState) => state.gallery.data
 );
 
-export const { resetGalleryState } = gallerySlice.actions;
+export const {
+  resetGalleryState,
+  setGallerySection,
+  setGalleryShowViral,
+  setGallerySort,
+  setGalleryWindow,
+} = gallerySlice.actions;

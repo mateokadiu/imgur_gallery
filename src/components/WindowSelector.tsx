@@ -2,18 +2,17 @@ import React, { useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { RootContext } from "../contexts/RootContext";
-import { useDispatch } from "react-redux";
-import { resetGalleryState } from "../data/store/gallerySlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectGalleryState,
+  setGalleryWindow,
+} from "../data/store/gallerySlice";
 
 export default function WindowSelector() {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(menuAnchorEl);
 
-  const {
-    state: { window },
-    action: { setWindow },
-  } = useContext(RootContext);
+  const { window } = useSelector(selectGalleryState);
 
   const dispatch = useDispatch();
 
@@ -22,9 +21,8 @@ export default function WindowSelector() {
   };
 
   const handleMenuItemClick = (value: typeof window) => {
-    setWindow(value);
     if (value !== window) {
-      dispatch(resetGalleryState());
+      dispatch(setGalleryWindow(value));
     }
 
     setMenuAnchorEl(null);

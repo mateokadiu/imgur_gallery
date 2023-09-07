@@ -5,21 +5,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { persistor, store } from "./data/store";
 import { Provider } from "react-redux";
-import { RootProvider } from "./contexts/RootContext";
 import { PersistGate } from "redux-persist/integration/react";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
 root.render(
-  <RootProvider>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
-  </RootProvider>
+  <Provider store={store}>
+    <PersistGate loading={<LoadingSpinner />} persistor={persistor}>
+      <App />
+    </PersistGate>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

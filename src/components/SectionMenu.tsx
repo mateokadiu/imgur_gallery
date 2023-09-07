@@ -5,29 +5,27 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
-import React, { useCallback, useContext } from "react";
-import { RootContext } from "../contexts/RootContext";
+import React, { useContext } from "react";
 import TagFacesOutlinedIcon from "@mui/icons-material/TagFacesOutlined";
 import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 import WhatshotOutlinedIcon from "@mui/icons-material/WhatshotOutlined";
-import { resetGalleryState } from "../data/store/gallerySlice";
-import { useDispatch } from "react-redux";
+import {
+  selectGalleryState,
+  setGallerySection,
+} from "../data/store/gallerySlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const SectionMenu = () => {
-  const {
-    state: { section },
-    action: { setSection },
-  } = useContext(RootContext);
-
   const dispatch = useDispatch();
+
+  const { section } = useSelector(selectGalleryState);
 
   const handleChange = (
     event: React.MouseEvent<HTMLElement>,
     newSection: "user" | "hot" | "top" | null
   ) => {
     if (newSection) {
-      setSection(newSection);
-      dispatch(resetGalleryState());
+      dispatch(setGallerySection(newSection));
     }
   };
 

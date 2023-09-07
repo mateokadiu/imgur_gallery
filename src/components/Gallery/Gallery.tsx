@@ -3,17 +3,17 @@ import GalleryElement from "./GalleryElement";
 import { Masonry } from "react-masonry/dist";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { useSelector } from "react-redux";
-import { selectAllImages } from "../../data/store/gallerySlice";
-import { RootContext } from "../../contexts/RootContext";
+import {
+  selectAllImages,
+  selectGalleryState,
+} from "../../data/store/gallerySlice";
 
 const Gallery = () => {
   const { width } = useWindowDimensions();
 
   const galleryData = useSelector(selectAllImages);
 
-  const {
-    state: { section },
-  } = useContext(RootContext);
+  const { section } = useSelector(selectGalleryState);
 
   const memoizedList = useMemo(() => {
     return galleryData.map((value) => (

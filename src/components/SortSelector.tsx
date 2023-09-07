@@ -2,18 +2,14 @@ import React, { useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { RootContext } from "../contexts/RootContext";
-import { useDispatch } from "react-redux";
-import { resetGalleryState } from "../data/store/gallerySlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectGalleryState, setGallerySort } from "../data/store/gallerySlice";
 
 export default function SortSelector() {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(menuAnchorEl);
 
-  const {
-    state: { sort },
-    action: { setSort },
-  } = useContext(RootContext);
+  const { sort } = useSelector(selectGalleryState);
 
   const dispatch = useDispatch();
 
@@ -22,8 +18,7 @@ export default function SortSelector() {
   };
 
   const handleMenuItemClick = (value: typeof sort) => {
-    setSort(value);
-    dispatch(resetGalleryState());
+    dispatch(setGallerySort(value));
     setMenuAnchorEl(null);
   };
 
