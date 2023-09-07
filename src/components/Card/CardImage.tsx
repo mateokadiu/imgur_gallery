@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import LoadingSpinner from "../LoadingSpinner";
 
 interface CardImageProps {
   source: string;
@@ -6,16 +7,26 @@ interface CardImageProps {
 }
 
 const CardImage = ({ source, title }: CardImageProps) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoad = () => {
+    setIsLoading(false);
+  };
+
   return (
-    <img
-      style={{
-        objectFit: "cover",
-        width: "100%",
-        height: "100%",
-      }}
-      src={source}
-      alt={title} // Provide alt text for accessibility.
-    />
+    <>
+      {isLoading && <LoadingSpinner />}
+      <img
+        style={{
+          objectFit: "cover",
+          width: "100%",
+          height: "100%",
+        }}
+        onLoad={handleLoad}
+        src={source}
+        alt={title} // Provide alt text for accessibility.
+      />
+    </>
   );
 };
 
