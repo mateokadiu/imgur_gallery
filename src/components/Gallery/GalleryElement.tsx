@@ -7,6 +7,7 @@ import CardVideo from "../Card/CardVideo/CardVideo";
 import CardImage from "../Card/CardImage/CardImage";
 import CardContainer from "../Card/CardContainer";
 import { Link } from "react-router-dom";
+import CardContent from "../Card/CardContent";
 
 interface GalleryElementProps {
   element: ImgurImage;
@@ -22,7 +23,6 @@ const GalleryElement = ({ element }: GalleryElementProps) => {
     : (element as any as ImgurImageInfo);
 
   if (coverImage) {
-    const source = `http://${coverImage.link.split("//")[1]}`;
     content = (
       <Link to={`/gallery/${element.id}`}>
         <CardContainer
@@ -36,11 +36,11 @@ const GalleryElement = ({ element }: GalleryElementProps) => {
             commentCount: element.comment_count,
           }}
         >
-          {coverImage.type?.includes("video") ? (
-            <CardVideo source={source} />
-          ) : (
-            <CardImage source={source} title={element.title} />
-          )}
+          <CardContent
+            link={coverImage.link}
+            title={element.title}
+            type={coverImage.type}
+          />
         </CardContainer>
       </Link>
     );

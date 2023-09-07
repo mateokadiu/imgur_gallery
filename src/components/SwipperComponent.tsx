@@ -4,6 +4,7 @@ import { register } from "swiper/element/bundle";
 import { ImgurImageInfo } from "../data/interfaces/imgur.interfaces";
 import CardImage from "./Card/CardImage/CardImage";
 import CardVideo from "./Card/CardVideo/CardVideo";
+import CardContent from "./Card/CardContent";
 
 register();
 
@@ -45,17 +46,11 @@ const SwipperComponent = ({ images }: SwipperComponentProps) => {
           }}
           key={index}
         >
-          {image.type?.includes("video") ? (
-            <CardVideo
-              title={image.title}
-              source={`http://${image.link.split("//")[1]}`}
-            />
-          ) : (
-            <CardImage
-              title={image.title}
-              source={`http://${image.link.split("//")[1]}`}
-            />
-          )}
+          <CardContent
+            link={image.link}
+            title={image.title}
+            type={image.type}
+          />
         </swiper-slide>
       ))}
     </swiper-container>

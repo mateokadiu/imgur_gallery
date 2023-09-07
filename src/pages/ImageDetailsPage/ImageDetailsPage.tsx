@@ -10,6 +10,7 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import SwipperComponent from "../../components/SwipperComponent";
 import CardVideo from "../../components/Card/CardVideo/CardVideo";
 import CardImage from "../../components/Card/CardImage/CardImage";
+import CardContent from "../../components/Card/CardContent";
 const ImageDetailsPage = () => {
   const { id } = useParams();
   const result = useGetGalleryByIdQuery(id as any);
@@ -55,12 +56,11 @@ const ImageDetailsPage = () => {
           >
             {result.data.images ? (
               <SwipperComponent images={result.data.images} />
-            ) : result.data.type?.includes("video") ? (
-              <CardVideo source={`http://${result.data.link.split("//")[1]}`} />
             ) : (
-              <CardImage
-                source={`http://${result.data.link.split("//")[1]}`}
+              <CardContent
+                link={result.data.link}
                 title={result.data.title}
+                type={result.data.type}
               />
             )}
           </CardContainer>
