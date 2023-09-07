@@ -8,6 +8,8 @@ import { useGetGalleryByIdQuery } from "../../data/api/imgur.api";
 import CardContainer from "../../components/Card/CardContainer";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import SwipperComponent from "../../components/SwipperComponent";
+import CardVideo from "../../components/Card/CardVideo/CardVideo";
+import CardImage from "../../components/Card/CardImage/CardImage";
 const ImageDetailsPage = () => {
   const { id } = useParams();
   const result = useGetGalleryByIdQuery(id as any);
@@ -51,7 +53,16 @@ const ImageDetailsPage = () => {
             }}
             title={result.data.title}
           >
-            <SwipperComponent images={result.data.images} />
+            {result.data.images ? (
+              <SwipperComponent images={result.data.images} />
+            ) : result.data.type?.includes("video") ? (
+              <CardVideo source={`http://${result.data.link.split("//")[1]}`} />
+            ) : (
+              <CardImage
+                source={`http://${result.data.link.split("//")[1]}`}
+                title={result.data.title}
+              />
+            )}
           </CardContainer>
         ) : null}
       </div>
