@@ -24,6 +24,7 @@ This repository contains a web application that allows users to browse the Imgur
 - Swiper.js
 - React Masonry
 - TypeScript
+- SCSS
 
 ## Installation
 
